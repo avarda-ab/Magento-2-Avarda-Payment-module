@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright © 2021 Avarda. All rights reserved.
+ * @package     avarda_payments_Checkout
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="avarda_payments_payments_section" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Avarda Payments</label>
+                <comment><![CDATA[<div class="avarda-payments-logo"></div><div class="avarda-payments-text">Next-generation payment and checkout solutions for online retailers in the nordics.<br/></div>]]></comment>
+                <fieldset_css>complex avarda_payments_payments_section</fieldset_css>
+                <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
+                <group id="api" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Avarda API Configuration</label>
+                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable Avarda Integration</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>avarda_payments/api/active</config_path>
+                    </field>
+                    <field id="test_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Test Mode (Stage)</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>avarda_payments/api/test_mode</config_path>
+                    </field>
+                    <field id="client_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Client ID</label>
+                        <config_path>avarda_payments/api/client_id</config_path>
+                    </field>
+                    <field id="client_secret" translate="label" type="obscure" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Client Secret</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                        <config_path>avarda_payments/api/client_secret</config_path>
+                    </field>
+                    <field id="debug" sortOrder="110" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Debug Logging</label>
+                        <config_path>avarda_payments/api/debug</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                        <comment>Should not be enabled in production. Sensitive information is logged.</comment>
+                    </field>
+                </group>
+                <group id="avarda_payments_invoice" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Avarda Invoice</label>
+                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable Avarda Invoice</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_invoice/active</config_path>
+                    </field>
+                    <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Title</label>
+                        <config_path>payment/avarda_payments_invoice/title</config_path>
+                    </field>
+                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                        <label>Upload Image</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                        <upload_dir>media/payment</upload_dir>
+                        <config_path>payment/avarda_payments_invoice/image</config_path>
+                    </field>
+                    <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Instructions</label>
+                        <config_path>payment/avarda_payments_invoice/instructions</config_path>
+                    </field>
+                    <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Text</label>
+                        <config_path>payment/avarda_payments_partpayment/terms_text</config_path>
+                    </field>
+                    <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Link</label>
+                        <config_path>payment/avarda_payments_partpayment/terms_link</config_path>
+                    </field>
+                    <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>New Order Status</label>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status\Newprocessing</source_model>
+                        <config_path>payment/avarda_payments_invoice/order_status</config_path>
+                    </field>
+                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>Payment from Applicable Countries</label>
+                        <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                        <config_path>payment/avarda_payments_invoice/allowspecific</config_path>
+                    </field>
+                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment from Specific Countries</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <config_path>payment/avarda_payments_invoice/specificcountry</config_path>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sort Order</label>
+                        <config_path>payment/avarda_payments_invoice/sort_order</config_path>
+                    </field>
+                </group>
+                <group id="avarda_payments_direct_invoice" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Avarda Direct Invoice</label>
+                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable Avarda Direct Invoice</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_direct_invoice/active</config_path>
+                    </field>
+                    <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Title</label>
+                        <config_path>payment/avarda_payments_direct_invoice/title</config_path>
+                    </field>
+                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                        <label>Upload Image</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                        <upload_dir>media/payment</upload_dir>
+                        <config_path>payment/avarda_payments_direct_invoice/image</config_path>
+                    </field>
+                    <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Instructions</label>
+                        <config_path>payment/avarda_payments_direct_invoice/instructions</config_path>
+                    </field>
+                    <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Text</label>
+                        <config_path>payment/avarda_payments_partpayment/terms_text</config_path>
+                    </field>
+                    <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Link</label>
+                        <config_path>payment/avarda_payments_partpayment/terms_link</config_path>
+                    </field>
+                    <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>New Order Status</label>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status\Newprocessing</source_model>
+                        <config_path>payment/avarda_payments_direct_invoice/order_status</config_path>
+                    </field>
+                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>Payment from Applicable Countries</label>
+                        <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                        <config_path>payment/avarda_payments_direct_invoice/allowspecific</config_path>
+                    </field>
+                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment from Specific Countries</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <config_path>payment/avarda_payments_direct_invoice/specificcountry</config_path>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sort Order</label>
+                        <config_path>payment/avarda_payments_direct_invoice/sort_order</config_path>
+                    </field>
+                </group>
+                <group id="avarda_payments_loan" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Avarda Loan</label>
+                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable Avarda Loan</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_loan/active</config_path>
+                    </field>
+                    <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Title</label>
+                        <config_path>payment/avarda_payments_loan/title</config_path>
+                    </field>
+                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                        <label>Upload Image</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                        <upload_dir>media/payment</upload_dir>
+                        <config_path>payment/avarda_payments_loan/image</config_path>
+                    </field>
+                    <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Instructions</label>
+                        <config_path>payment/avarda_payments_loan/instructions</config_path>
+                    </field>
+                    <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Text</label>
+                        <config_path>payment/avarda_payments_partpayment/terms_text</config_path>
+                    </field>
+                    <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Link</label>
+                        <config_path>payment/avarda_payments_partpayment/terms_link</config_path>
+                    </field>
+                    <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>New Order Status</label>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status\Newprocessing</source_model>
+                        <config_path>payment/avarda_payments_loan/order_status</config_path>
+                    </field>
+                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>Payment from Applicable Countries</label>
+                        <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                        <config_path>payment/avarda_payments_loan/allowspecific</config_path>
+                    </field>
+                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment from Specific Countries</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <config_path>payment/avarda_payments_loan/specificcountry</config_path>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sort Order</label>
+                        <config_path>payment/avarda_payments_loan/sort_order</config_path>
+                    </field>
+                </group>
+                <group id="avarda_payments_partpayment" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Avarda PartPayment</label>
+                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable Avarda PartPayment</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_partpayment/active</config_path>
+                    </field>
+                    <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Title</label>
+                        <config_path>payment/avarda_payments_partpayment/title</config_path>
+                    </field>
+                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                        <label>Upload Image</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                        <upload_dir>media/payment</upload_dir>
+                        <config_path>payment/avarda_payments_partpayment/image</config_path>
+                    </field>
+                    <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Instructions</label>
+                        <config_path>payment/avarda_payments_partpayment/instructions</config_path>
+                    </field>
+                    <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Text</label>
+                        <config_path>payment/avarda_payments_partpayment/terms_text</config_path>
+                    </field>
+                    <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Link</label>
+                        <config_path>payment/avarda_payments_partpayment/terms_link</config_path>
+                    </field>
+                    <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>New Order Status</label>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status\Newprocessing</source_model>
+                        <config_path>payment/avarda_payments_partpayment/order_status</config_path>
+                    </field>
+                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>Payment from Applicable Countries</label>
+                        <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                        <config_path>payment/avarda_payments_partpayment/allowspecific</config_path>
+                    </field>
+                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment from Specific Countries</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <config_path>payment/avarda_payments_partpayment/specificcountry</config_path>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sort Order</label>
+                        <config_path>payment/avarda_payments_partpayment/sort_order</config_path>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

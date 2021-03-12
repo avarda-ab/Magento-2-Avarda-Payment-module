@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright © 2021 Avarda. All rights reserved.
+ * @package     Avarda_Payments
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="payment_method_assign_data">
+        <observer name="avarda_payments_assing_ssn" instance="Avarda\Payments\Observer\SsnDataAssigner" />
+    </event>
+    <event name="sales_order_place_after">
+        <observer name="avarda_payments_assign_data" instance="Avarda\Payments\Observer\OrderPlaceAfter" />
+    </event>
+    <event name="order_cancel_after">
+        <observer name="avarda_payments_sales_order_cancel_after" instance="Avarda\Payments\Observer\OrderCancelObserver" />
+    </event>
+    <event name="sales_order_payment_place_end">
+        <observer name="avarda_payments_prevent_email_sending" instance="Avarda\Payments\Observer\OrderPlaceEnd" />
+    </event>
+    <event name="admin_system_config_changed_section_payment">
+        <observer name="avarda_payments_remove_falgs" instance="Avarda\Payments\Observer\ConfigSaveObserver" />
+    </event>
+</config>

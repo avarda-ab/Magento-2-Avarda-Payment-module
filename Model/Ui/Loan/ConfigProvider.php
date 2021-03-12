@@ -1,0 +1,16 @@
+<?php
+/**
+ * @copyright Copyright © 2021 Avarda. All rights reserved.
+ * @package   Avarda_Payments
+ */
+namespace Avarda\Payments\Model\Ui\Loan;
+
+use Avarda\Payments\Model\Ui\ConfigProvider as BaseConfigProvider;
+
+/**
+ * Class ConfigProvider
+ */
+class ConfigProvider extends BaseConfigProvider
+{
+    const CODE = 'avarda_payments_loan';
+}

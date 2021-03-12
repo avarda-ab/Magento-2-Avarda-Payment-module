@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright © 2021 Avarda. All rights reserved.
+ * @package     Avarda_Payments
+ */
+-->
+<payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd">
+    <groups>
+        <group id="avarda_payments">
+            <label>Avarda Payments</label>
+        </group>
+    </groups>
+    <methods>
+        <method name="avarda_payments_invoice">
+            <allow_multiple_address>0</allow_multiple_address>
+        </method>
+        <method name="avarda_payments_direct_invoice">
+            <allow_multiple_address>0</allow_multiple_address>
+        </method>
+        <method name="avarda_payments_loan">
+            <allow_multiple_address>0</allow_multiple_address>
+        </method>
+        <method name="avarda_payments_partpayment">
+            <allow_multiple_address>0</allow_multiple_address>
+        </method>
+    </methods>
+</payment>
+

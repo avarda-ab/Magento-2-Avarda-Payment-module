@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright © 2021 Avarda. All rights reserved.
+ * @package     Avarda_Payments
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <avarda_payments_invoice>
+                <title>Lasku</title>
+                <instructions>• Saat tuotteet aina ennen maksamista
+• Käsittelymaksu 2,95 €
+• Voit halutessasi maksaa osissa</instructions>
+                <terms_text>Tarjoamme Laskun yhteistyössä Avardan kanssa.</terms_text>
+                <group>avarda_payments</group>
+                <model>AvardaPaymentsInvoiceFacade</model>
+                <order_status>processing</order_status>
+                <active>0</active>
+                <payment_action>authorize</payment_action>
+                <can_initialize>1</can_initialize>
+                <can_cancel>1</can_cancel>
+                <can_capture>1</can_capture>
+                <can_capture_partial>1</can_capture_partial>
+                <can_refund>1</can_refund>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_use_checkout>1</can_use_checkout>
+            </avarda_payments_invoice>
+            <avarda_payments_direct_invoice>
+                <title>Lasku - 30 päivää maksuaikaa!</title>
+                <instructions>• Saat tuotteet aina ennen maksamista
+• Käsittelymaksu 2,95 €
+• Voit halutessasi maksaa laskun osissa</instructions>
+                <terms_text>Tarjoamme Laskun yhteistyössä Avardan kanssa.</terms_text>
+                <group>avarda_payments</group>
+                <model>AvardaPaymentsDirectInvoiceFacade</model>
+                <order_status>processing</order_status>
+                <active>0</active>
+                <payment_action>authorize</payment_action>
+                <can_initialize>1</can_initialize>
+                <can_cancel>1</can_cancel>
+                <can_capture>1</can_capture>
+                <can_capture_partial>1</can_capture_partial>
+                <can_refund>1</can_refund>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_use_checkout>1</can_use_checkout>
+            </avarda_payments_direct_invoice>
+            <avarda_payments_loan>
+                <title>Tili – jopa 36 kk maksuaikaa</title>
+                <instructions>• Maksa osissa omaan tahtiisi
+• Voit milloin tahansa maksaa jäljellä olevan saldon pois
+• Vuosikorko 19,90 % ja tilinhoitomaksu 2,95 €</instructions>
+                <terms_text>Todellinen vuosikorko 29,35%, todelliset luottokustannukset 146,44€ ja kokonaiskustannus 1 146,44€, kun takaisinmaksuaika on 12 kuukautta ja luoton suuruus 1000€. Tarjoamme Tilin yhteistyössä Avardan kanssa.</terms_text>
+                <group>avarda_payments</group>
+                <model>AvardaPaymentsLoanFacade</model>
+                <order_status>processing</order_status>
+                <active>0</active>
+                <payment_action>authorize</payment_action>
+                <can_initialize>1</can_initialize>
+                <can_cancel>1</can_cancel>
+                <can_capture>1</can_capture>
+                <can_capture_partial>1</can_capture_partial>
+                <can_refund>1</can_refund>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_use_checkout>1</can_use_checkout>
+            </avarda_payments_loan>
+            <avarda_payments_partpayment>
+                <title>Part Payment</title>
+                <terms_text>Tarjoamme Laskun yhteistyössä Avardan kanssa.</terms_text>
+                <group>avarda_payments</group>
+                <model>AvardaPaymentsPartPaymentFacade</model>
+                <order_status>processing</order_status>
+                <payment_action>authorize</payment_action>
+                <can_initialize>1</can_initialize>
+                <active>0</active>
+                <can_cancel>1</can_cancel>
+                <can_capture>1</can_capture>
+                <can_capture_partial>1</can_capture_partial>
+                <can_refund>1</can_refund>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_use_checkout>1</can_use_checkout>
+            </avarda_payments_partpayment>
+        </payment>
+    </default>
+</config>

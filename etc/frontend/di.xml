@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright © 2021 Avarda. All rights reserved.
+ * @package     Avarda_Payments
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="AvardaPaymentsInvoiceInstructionProvider" type="Avarda\Payments\Model\InstructionsConfigProvider">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\Invoice\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AvardaPaymentsDirectInvoiceInstructionProvider" type="Avarda\Payments\Model\InstructionsConfigProvider">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\DirectInvoice\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AvardaPaymentsLoanInstructionProvider" type="Avarda\Payments\Model\InstructionsConfigProvider">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\Loan\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AvardaPaymentsPartPaymentInstructionProvider" type="Avarda\Payments\Model\InstructionsConfigProvider">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\PartPayment\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="avarda_payment_invoice_instructions_config_provider" xsi:type="object">AvardaPaymentsInvoiceInstructionProvider</item>
+                <item name="avarda_payment_direct_invoice_instructions_config_provider" xsi:type="object">AvardaPaymentsDirectInvoiceInstructionProvider</item>
+                <item name="avarda_payment_loan_instructions_config_provider" xsi:type="object">AvardaPaymentsLoanInstructionProvider</item>
+                <item name="avarda_payment_partpayment_instructions_config_provider" xsi:type="object">AvardaPaymentsPartPaymentInstructionProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
