@@ -31,7 +31,7 @@ class AvardaClient
     public function __construct(
         Config $config,
         FlagManager $flagManager,
-        $logger = null
+        Logger $logger = null
     ) {
         $this->config = $config;
         $this->flagManager = $flagManager;
