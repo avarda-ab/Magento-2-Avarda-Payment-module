@@ -62,9 +62,9 @@ class InvoiceCollectTotalsPrepareItems extends AbstractPrepareItems
             }
 
             $itemAdapter = $this->itemAdapterFactory->create();
-            $itemAdapter->setAmount($item->getRowTotalInclTax() - $item->getDiscountAmount());
+            $itemAdapter->setAmount($item->getBaseRowTotalInclTax() - $item->getBaseDiscountAmount());
             $itemAdapter->setDescription($item->getName());
-            $itemAdapter->setTaxAmount($item->getTaxAmount() + $item->getDiscountTaxCompensationAmount() + $item->getWeeeTaxAppliedAmount());
+            $itemAdapter->setTaxAmount($item->getBaseTaxAmount());
             $itemAdapter->setNotes($item->getSku());
             $itemAdapter->setTaxCode($orderItem->getTaxPercent());
 
@@ -79,12 +79,12 @@ class InvoiceCollectTotalsPrepareItems extends AbstractPrepareItems
      */
     protected function prepareShipment(InvoiceInterface $subject)
     {
-        $shippingAmount = $subject->getShippingInclTax();
+        $shippingAmount = $subject->getBaseShippingInclTax();
         if ($shippingAmount > 0) {
             $order = $subject->getOrder();
             $itemAdapter = $this->itemAdapterFactory->create();
             $itemAdapter->setAmount($shippingAmount);
-            $itemAdapter->setTaxAmount($subject->getShippingTaxAmount());
+            $itemAdapter->setTaxAmount($subject->getBaseShippingTaxAmount());
             $itemAdapter->setDescription($order->getShippingDescription());
             $itemAdapter->setNotes($order->getShippingMethod());
             $this->itemStorage->addItem($itemAdapter);

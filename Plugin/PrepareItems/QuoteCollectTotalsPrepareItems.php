@@ -68,9 +68,9 @@ class QuoteCollectTotalsPrepareItems extends AbstractPrepareItems
             }
 
             $itemAdapter = $this->itemAdapterFactory->create();
-            $itemAdapter->setAmount($item->getRowTotalInclTax() - $item->getDiscountAmount());
+            $itemAdapter->setAmount($item->getBaseRowTotalInclTax() - $item->getBaseDiscountAmount());
             $itemAdapter->setDescription($item->getName());
-            $itemAdapter->setTaxAmount($item->getTaxAmount() + $item->getDiscountTaxCompensationAmount() + $item->getWeeeTaxAppliedAmount());
+            $itemAdapter->setTaxAmount($item->getBaseTaxAmount());
             $itemAdapter->setNotes($item->getSku());
             $itemAdapter->setTaxCode($item->getTaxPercent());
 
@@ -92,10 +92,10 @@ class QuoteCollectTotalsPrepareItems extends AbstractPrepareItems
         }
 
         $shippingAddress = $subject->getShippingAddress();
-        if ($shippingAddress && $shippingAddress->getShippingInclTax() > 0) {
+        if ($shippingAddress && $shippingAddress->getBaseShippingInclTax() > 0) {
             $itemAdapter = $this->itemAdapterFactory->create();
-            $itemAdapter->setAmount($shippingAddress->getShippingInclTax());
-            $itemAdapter->setTaxAmount($shippingAddress->getShippingTaxAmount());
+            $itemAdapter->setAmount($shippingAddress->getBaseShippingInclTax());
+            $itemAdapter->setTaxAmount($shippingAddress->getBaseShippingTaxAmount());
             $itemAdapter->setDescription($shippingAddress->getShippingDescription());
             $itemAdapter->setNotes($shippingAddress->getShippingMethod());
             $this->itemStorage->addItem($itemAdapter);

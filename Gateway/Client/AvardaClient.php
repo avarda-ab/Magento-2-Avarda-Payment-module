@@ -10,6 +10,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Laminas\Http\Request;
 use Magento\Framework\FlagManager;
+use Magento\Payment\Gateway\Http\ClientException;
 use Magento\Payment\Model\Method\Logger;
 use Psr\Http\Message\ResponseInterface;
 
@@ -156,7 +157,7 @@ class AvardaClient
     {
         $tokenValid = $this->flagManager->getFlagData('avarda_payments_token_valid');
         if (!$tokenValid || $tokenValid < time()) {
-            $authUrl   = $this->config->getTokenUrl();
+            $authUrl = $this->config->getTokenUrl();
             $authParam = [
                 'client_id'     => $this->config->getClientId(),
                 'client_secret' => $this->config->getClientSecret(),
@@ -168,8 +169,14 @@ class AvardaClient
             ];
             $response = $this->post($authUrl, $authParam, $headers, 'form_params');
             $responseArray = json_decode((string)$response->getBody(), true);
-            $this->flagManager->saveFlag('avarda_payments_token_valid', $responseArray['expires_on']);
-            $this->config->saveNewToken($responseArray['access_token']);
+            if (!is_array($responseArray)) {
+                throw new ClientException(__('Authentication with avarda responded with invalid response'));
+            } elseif (isset($responseArray['error_description'])) {
+                throw new ClientException(__('Authentication error, check avarda credentials'));
+            } else {
+                $this->flagManager->saveFlag('avarda_payments_token_valid', $responseArray['expires_on']);
+                $this->config->saveNewToken($responseArray['access_token']);
+            }
         }
 
         return $this->config->getToken();
