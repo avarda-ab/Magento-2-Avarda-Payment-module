@@ -3,7 +3,13 @@
 namespace Avarda\Payments\Controller\Redirect;
 
 use Avarda\Payments\Helper\AuthorizationStatus;
+use Exception;
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\DB\TransactionFactory;
+use Magento\Framework\Exception\NotFoundException;
+use Magento\Payment\Model\Method\AbstractMethod;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\Api\FilterBuilder;
@@ -11,12 +17,13 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\UrlInterface;
 use Magento\Sales\Api\TransactionRepositoryInterface;
+use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
-use Magento\Sales\Model\Order\Payment\Transaction;
+use Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory;
 use Magento\Sales\Model\Service\InvoiceService;
 use Psr\Log\LoggerInterface;
 
-class Index extends \Magento\Framework\App\Action\Action
+class Index extends Action
 {
     /** @var UrlInterface */
     protected $urlBuilder;
@@ -48,6 +55,9 @@ class Index extends \Magento\Framework\App\Action\Action
     /** @var TransactionFactory */
     protected $transactionFactory;
 
+    /** @var CollectionFactory */
+    protected $statucCollectionFactory;
+
     /** @var LoggerInterface */
     protected $logger;
 
@@ -62,6 +72,7 @@ class Index extends \Magento\Framework\App\Action\Action
         AuthorizationStatus $authorizationStatus,
         InvoiceService $invoiceService,
         TransactionFactory $transactionFactory,
+        CollectionFactory $statucCollectionFactory,
         LoggerInterface $logger
     ) {
         parent::__construct($context);
@@ -76,14 +87,15 @@ class Index extends \Magento\Framework\App\Action\Action
         $this->authorizationStatus = $authorizationStatus;
         $this->invoiceService = $invoiceService;
         $this->transactionFactory = $transactionFactory;
+        $this->statucCollectionFactory = $statucCollectionFactory;
         $this->logger = $logger;
     }
 
     /**
      * Dispatch request
      *
-     * @return \Magento\Framework\Controller\ResultInterface|ResponseInterface
-     * @throws \Magento\Framework\Exception\NotFoundException
+     * @return ResultInterface|ResponseInterface|void
+     * @throws NotFoundException
      */
     public function execute()
     {
@@ -113,9 +125,10 @@ class Index extends \Magento\Framework\App\Action\Action
         }
 
         $orderList = $orders->getItems();
+        /** @var Order $order */
         $order = reset($orderList);
 
-        /** @var \Magento\Payment\Model\Method\AbstractMethod $method */
+        /** @var AbstractMethod $method */
         $method = $order->getPayment()->getMethodInstance();
 
         // Unset session variables
@@ -144,6 +157,7 @@ class Index extends \Magento\Framework\App\Action\Action
 
         // Change order status
         $newStatus = $method->getConfigData('order_status');
+        $order->setState($this->getState($newStatus));
         $order->setStatus($newStatus);
         $order->addCommentToStatusHistory(__('Authorization has been completed'));
         $this->orderRepository->save($order);
@@ -151,12 +165,24 @@ class Index extends \Magento\Framework\App\Action\Action
         // Send order notification
         try {
             $this->orderSender->send($order);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->critical($e);
         }
 
         // Redirect to success page
         $this->session->getQuote()->setIsActive(false)->save();
         $this->_redirect('checkout/onepage/success');
+    }
+
+    /**
+     * Get state for status
+     * @param $status
+     * @return string
+     */
+    public function getState($status)
+    {
+        $collection = $this->statucCollectionFactory->create()->joinStates();
+        $status = $collection->addAttributeToFilter('main_table.status', $status)->getFirstItem();
+        return $status->getState();
     }
 }
