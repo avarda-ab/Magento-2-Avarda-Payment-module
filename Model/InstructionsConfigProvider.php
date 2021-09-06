@@ -91,7 +91,7 @@ class InstructionsConfigProvider implements ConfigProviderInterface
     {
         $image = $this->scopeConfig->getValue('payment/' . $code . '/image', ScopeInterface::SCOPE_STORE);
         if ($image) {
-            $pub = $this->url->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+            $pub = $this->url->getConfigData('base_url');
             return $pub . 'media/payment/' . $image;
         }
         return '';
