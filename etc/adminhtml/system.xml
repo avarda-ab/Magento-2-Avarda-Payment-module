@@ -64,11 +64,11 @@
                     </field>
                     <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Text</label>
-                        <config_path>payment/avarda_payments_partpayment/terms_text</config_path>
+                        <config_path>payment/avarda_payments_invoice/terms_text</config_path>
                     </field>
                     <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Link</label>
-                        <config_path>payment/avarda_payments_partpayment/terms_link</config_path>
+                        <config_path>payment/avarda_payments_invoice/terms_link</config_path>
                     </field>
                     <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>New Order Status</label>
@@ -114,11 +114,11 @@
                     </field>
                     <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Text</label>
-                        <config_path>payment/avarda_payments_partpayment/terms_text</config_path>
+                        <config_path>payment/avarda_payments_direct_invoice/terms_text</config_path>
                     </field>
                     <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Link</label>
-                        <config_path>payment/avarda_payments_partpayment/terms_link</config_path>
+                        <config_path>payment/avarda_payments_direct_invoice/terms_link</config_path>
                     </field>
                     <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>New Order Status</label>
@@ -164,11 +164,11 @@
                     </field>
                     <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Text</label>
-                        <config_path>payment/avarda_payments_partpayment/terms_text</config_path>
+                        <config_path>payment/avarda_payments_loan/terms_text</config_path>
                     </field>
                     <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Link</label>
-                        <config_path>payment/avarda_payments_partpayment/terms_link</config_path>
+                        <config_path>payment/avarda_payments_loan/terms_link</config_path>
                     </field>
                     <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>New Order Status</label>
