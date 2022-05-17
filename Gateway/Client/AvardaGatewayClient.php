@@ -6,11 +6,14 @@
  */
 namespace Avarda\Payments\Gateway\Client;
 
-use Magento\Framework\Webapi\Exception as WebapiException;
+use LogicException;
+use Magento\Payment\Gateway\Http\ClientException;
 use Magento\Payment\Gateway\Http\ClientInterface;
 use Magento\Payment\Gateway\Http\ConverterInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
 use Magento\Payment\Model\Method\Logger;
+use RuntimeException;
+use Zend_Http_Client;
 
 class AvardaGatewayClient implements ClientInterface
 {
@@ -35,7 +38,7 @@ class AvardaGatewayClient implements ClientInterface
         ConverterInterface $converter = null
     ) {
         $this->avardaClient = $avardaClient;
-        $this->converter    = $converter;
+        $this->converter = $converter;
         $this->logger = $logger;
     }
 
@@ -56,15 +59,15 @@ class AvardaGatewayClient implements ClientInterface
 
         try {
             switch ($transferObject->getMethod()) {
-                case \Zend_Http_Client::GET:
+                case Zend_Http_Client::GET:
                     $result = $client->get($uri, $headers);
                     break;
-                case \Zend_Http_Client::POST:
+                case Zend_Http_Client::POST:
                     $response = $client->post($uri, $body, $headers);
                     $result = $this->converter->convert($response);
                     break;
                 default:
-                    throw new \LogicException(
+                    throw new LogicException(
                         sprintf(
                             'Unsupported HTTP method %s',
                             $transferObject->getMethod()
@@ -74,8 +77,8 @@ class AvardaGatewayClient implements ClientInterface
 
             $result = is_array($result) ? $result : json_decode($result, true);
             $log['response'] = $result;
-        } catch (\RuntimeException $e) {
-            throw new \Magento\Payment\Gateway\Http\ClientException(
+        } catch (RuntimeException $e) {
+            throw new ClientException(
                 __($e->getMessage())
             );
         }

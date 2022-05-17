@@ -143,7 +143,7 @@ class Index extends Action
             // Cancel order
             $order->cancel();
             $order->addCommentToStatusHistory(__('Order canceled. %1.', [$this->authorizationStatus->getStateText($additionalInformation['avarda_payments_status'])]));
-            $order->save();
+            $this->orderRepository->save($order);
 
             // Restore the quote
             $this->session->restoreQuote();

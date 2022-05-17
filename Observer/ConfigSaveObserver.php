@@ -31,7 +31,7 @@ class ConfigSaveObserver implements ObserverInterface
                 break;
             }
         }
-        // If api api keys or api url is changed remove current api token data
+        // If api keys or api url is changed remove current api token data
         if ($hasChanged) {
             $this->flagManager->deleteFlag('avarda_payments_api_token');
             $this->flagManager->deleteFlag('avarda_payments_token_valid');

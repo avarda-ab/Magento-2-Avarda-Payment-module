@@ -49,7 +49,6 @@ class OrderPlaceAfter implements ObserverInterface
             // remove ssn also from quote
             $quote = $this->cartRepository->get($order->getQuoteId());
             $quote->getPayment()->unsAdditionalInformation('avarda_payments_ssn');
-            $this->cartRepository->save($quote);
 
             $additionalInfo = $payment->getAdditionalInformation();
             $order->setData('avarda_payments_authorize_id', $additionalInfo['authorization_id']);
