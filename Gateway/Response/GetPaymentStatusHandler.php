@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright © 2021 Avarda. All rights reserved.
+ * @copyright Copyright © Avarda. All rights reserved.
  * @package   Avarda_Payments
  */
 namespace Avarda\Payments\Gateway\Response;
