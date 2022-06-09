@@ -8,7 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="payment">
-            <group id="avarda_payments_payments_section" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+            <group id="avarda_payments_payments_section" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Avarda Payments</label>
                 <comment><![CDATA[<div class="avarda-payments-logo"></div><div class="avarda-payments-text">Next-generation payment and checkout solutions for online retailers in the nordics.<br/></div>]]></comment>
                 <fieldset_css>complex avarda_payments_payments_section</fieldset_css>
