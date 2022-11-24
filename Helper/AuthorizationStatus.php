@@ -54,6 +54,7 @@ class AuthorizationStatus
     {
         /** @var InfoInterface|null $payment */
         $payment = $order->getPayment();
+        $arguments = [];
         if ($payment !== null && $payment instanceof InfoInterface) {
             $arguments['payment'] = $this->paymentDataObjectFactory
                 ->create($payment);

@@ -43,7 +43,7 @@ class PaymentData
      * Get state ID from payment info
      *
      * @param InfoInterface $payment
-     * @return int
+     * @return int|void
      */
     public function getStateId(InfoInterface $payment)
     {
