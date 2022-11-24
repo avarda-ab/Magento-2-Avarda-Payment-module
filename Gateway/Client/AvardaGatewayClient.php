@@ -95,7 +95,7 @@ class AvardaGatewayClient implements ClientInterface
         $uri = $transferObject->getUri();
         $parts = $transferObject->getBody()['additional'] ?? [];
         foreach ($parts as $part => $value) {
-            $uri = str_replace('{' . $part . '}', $value, $uri);
+            $uri = str_replace('{' . $part . '}', $value ?? '', $uri);
         }
 
         return $uri;
