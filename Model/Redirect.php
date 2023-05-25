@@ -41,7 +41,8 @@ class Redirect implements RedirectInterface
         return $this->url->getUrl(
             'avarda_payments/redirect',
             ['_query' => [
-                'authorizationId' => $this->checkoutSession->getAvardaPaymentsAuthorizeId()
+                'authorizationId' => $this->checkoutSession->getAvardaPaymentsAuthorizeId(),
+                'orderId' => $this->checkoutSession->getAvardaPaymentsOrderId()
             ]]
         );
     }
