@@ -4,18 +4,18 @@ namespace Avarda\Payments\Controller\Redirect;
 
 use Avarda\Payments\Helper\AuthorizationStatus;
 use Exception;
+use Magento\Checkout\Model\Session;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\DB\TransactionFactory;
 use Magento\Framework\Exception\NotFoundException;
+use Magento\Framework\UrlInterface;
 use Magento\Payment\Model\Method\AbstractMethod;
 use Magento\Sales\Api\OrderRepositoryInterface;
-use Magento\Checkout\Model\Session;
-use Magento\Framework\Api\FilterBuilder;
-use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\App\Action\Context;
-use Magento\Framework\UrlInterface;
 use Magento\Sales\Api\TransactionRepositoryInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
@@ -112,8 +112,16 @@ class Index extends Action
             ->setField('avarda_payments_authorize_id')
             ->setValue($authorizationId)
             ->setConditionType('eq');
+
+        $orderId = $this->getRequest()->getParam('orderId');
+        $filter2 = $this->filterBuilder->create()
+            ->setField('increment_id')
+            ->setValue($orderId)
+            ->setConditionType('eq');
+
         $searchCriteria = $this->searchCriteriaBuilder
             ->addFilters([$filter])
+            ->addFilters([$filter2])
             ->create();
 
         $orders = $this->orderRepository->getList($searchCriteria);
@@ -139,7 +147,8 @@ class Index extends Action
         $additionalInformation = $order->getPayment()->getAdditionalInformation();
 
         if (!isset($additionalInformation['avarda_payments_status']) ||
-            $additionalInformation['avarda_payments_status'] != AuthorizationStatus::STATE_APPROVED) {
+            $additionalInformation['avarda_payments_status'] != AuthorizationStatus::STATE_APPROVED
+        ) {
             // Cancel order
             $order->cancel();
             $order->addCommentToStatusHistory(__('Order canceled. %1.', [$this->authorizationStatus->getStateText($additionalInformation['avarda_payments_status'])]));

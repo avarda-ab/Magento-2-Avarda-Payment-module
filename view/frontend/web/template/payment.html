@@ -9,10 +9,10 @@
         <input type="radio"
                name="payment[method]"
                class="radio"
-               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()">
         <label data-bind="attr: {'for': getCode()}" class="label">
             <!-- ko if: getImageSrc() -->
-            <img data-bind="attr: {'src': getImageSrc()}, alt: getTitle()" style="vertical-align: middle;max-width: 100px;max-height: 32px;margin-right: 5px;"/>
+            <img data-bind="attr: {'src': getImageSrc()}, alt: getTitle()" style="vertical-align: middle;max-width: 100px;max-height: 32px;margin-right: 5px;">
             <!--/ko-->
             <span data-bind="text: getTitle()"></span>
         </label>
@@ -46,7 +46,7 @@
                                data-validate="{required:true}"
                                data-bind="attr: {title: $t('Social Security Number')}, name: 'payment[' + getCode() + '_ssn]', id: getCode() + '_ssn', value: ssn"
                                class="input-text avarda ssn required"
-                               style="width: 200px" />
+                               style="width: 200px">
                     </div>
                 </div>
             </fieldset>

@@ -24,8 +24,8 @@ class Config extends \Magento\Payment\Gateway\Config\Config
     const KEY_AUTOMATIC_INVOICING_ACTIVE = 'automatic_invoicing_active';
     const KEY_ORDER_STATUS = 'order_status';
 
-    const URL_TEST = 'https://avdonl-s-authorizationapi.westeurope.cloudapp.azure.com/';
-    const URL_PRODUCTION = 'https://avdonl-p-authorizationapi.westeurope.cloudapp.azure.com/';
+    const URL_TEST = 'https://stage.authorization-api.avarda.com/';
+    const URL_PRODUCTION = 'https://authorization-api.avarda.com/';
     const TOKEN_PATH = 'oauth2/token';
 
     /** @var ScopeConfigInterface */

@@ -41,6 +41,7 @@ class AuthorizeOrderHandler implements HandlerInterface
         $authorizeId = $response['authorizationId'];
         $payment->setAdditionalInformation(self::AUTHORIZATION_ID, $authorizeId);
         $this->checkoutSession->setAvardaPaymentsAuthorizeId($authorizeId);
+        $this->checkoutSession->setAvardaPaymentsOrderId($paymentDO->getOrder()->getOrderIncrementId());
         if (isset($response['redirectUrl'])) {
             $payment->setAdditionalInformation(self::REDIRECT_URL, $response['redirectUrl']);
             $this->checkoutSession->setAvardaPaymentsRedirectUrl($response['redirectUrl']);
