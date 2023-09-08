@@ -12,7 +12,7 @@ use Magento\Payment\Gateway\Http\ConverterInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
 use Magento\Payment\Model\Method\Logger;
 use RuntimeException;
-use Zend_Http_Client;
+use Laminas\Http\Request;
 
 class AvardaGatewayClient implements ClientInterface
 {
@@ -58,10 +58,10 @@ class AvardaGatewayClient implements ClientInterface
 
         try {
             switch ($transferObject->getMethod()) {
-                case Zend_Http_Client::GET:
+                case Request::METHOD_GET:
                     $result = $client->get($uri, $headers);
                     break;
-                case Zend_Http_Client::POST:
+                case Request::METHOD_POST:
                     $response = $client->post($uri, $body, $headers);
                     $result = $this->converter->convert($response);
                     break;
