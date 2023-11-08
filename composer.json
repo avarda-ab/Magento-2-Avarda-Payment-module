@@ -14,6 +14,7 @@
         "magento/module-config": "*",
         "magento/module-eav": "*",
         "magento/module-payment": "*",
+        "magento/module-backend": "*"
     },
     "autoload": {
         "files": [
