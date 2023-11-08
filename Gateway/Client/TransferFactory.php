@@ -9,6 +9,7 @@ use Avarda\Payments\Gateway\Config\Config;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Payment\Gateway\Http\TransferBuilder;
 use Magento\Payment\Gateway\Http\TransferFactoryInterface;
+use Laminas\Http\Request;
 
 class TransferFactory implements TransferFactoryInterface
 {
@@ -33,7 +34,7 @@ class TransferFactory implements TransferFactoryInterface
         EncryptorInterface $encryptor,
         TransferBuilder $transferBuilder,
         Config $config,
-        $method = \Zend_Http_Client::POST,
+        $method = Request::METHOD_GET,
         $uri = ''
     ) {
         $this->encryptor = $encryptor;
