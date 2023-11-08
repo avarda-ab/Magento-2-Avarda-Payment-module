@@ -13,6 +13,7 @@ use Magento\Framework\FlagManager;
 use Magento\Payment\Gateway\Http\ClientException;
 use Magento\Payment\Model\Method\Logger;
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
 
 class AvardaClient
 {
@@ -93,7 +94,7 @@ class AvardaClient
     /**
      * @param ResponseInterface $response
      * @return bool|null
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function handleErrors(ResponseInterface $response): ?bool
     {
@@ -111,18 +112,18 @@ class AvardaClient
             case 404:
             case 405:
                 $this->logger->debug([$response->getStatusCode(), $response->getBody()]);
-                throw new \RuntimeException('Error in request');
+                throw new RuntimeException('Error in request');
             case 500:
                 $this->logger->debug([$response->getStatusCode(), $response->getBody()]);
-                throw new \RuntimeException('Avarda server error');
+                throw new RuntimeException('Avarda server error');
             default:
-                throw new \RuntimeException('Unhandled response status code');
+                throw new RuntimeException('Unhandled response status code');
         }
     }
 
     /**
      * @param bool $json
-     * @return array
+     * @throws ClientException|GuzzleException
      */
     public function buildHeader($json = true, $token = true): array
     {
@@ -152,6 +153,7 @@ class AvardaClient
 
     /**
      * @return string
+     * @throws ClientException|GuzzleException
      */
     private function getToken()
     {
