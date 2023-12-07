@@ -151,6 +151,7 @@
     <virtualType name="AvardaPaymentsAuthorizeOrderTransferFactory" type="Avarda\Payments\Gateway\Client\TransferFactory">
         <arguments>
             <argument name="uri" xsi:type="string">authorization/{payment_method}</argument>
+            <argument name="method" xsi:type="string">POST</argument>
         </arguments>
     </virtualType>
 
@@ -174,6 +175,7 @@
     <virtualType name="AvardaPaymentsPurchaseOrderTransferFactory" type="Avarda\Payments\Gateway\Client\TransferFactory">
         <arguments>
             <argument name="uri" xsi:type="string">authorization/{authorization_id}/order</argument>
+            <argument name="method" xsi:type="string">POST</argument>
         </arguments>
     </virtualType>
 
@@ -198,6 +200,7 @@
     <virtualType name="AvardaPaymentsRefundTransferFactory" type="Avarda\Payments\Gateway\Client\TransferFactory">
         <arguments>
             <argument name="uri" xsi:type="string">authorization/{authorization_id}/return</argument>
+            <argument name="method" xsi:type="string">POST</argument>
         </arguments>
     </virtualType>
 
@@ -218,6 +221,7 @@
     <virtualType name="AvardaPaymentsReturnTransferFactory" type="Avarda\Payments\Gateway\Client\TransferFactory">
         <arguments>
             <argument name="uri" xsi:type="string">authorization/{authorization_id}/cancel</argument>
+            <argument name="method" xsi:type="string">POST</argument>
         </arguments>
     </virtualType>
     <!-- END Avarda commands -->

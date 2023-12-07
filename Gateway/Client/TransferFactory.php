@@ -34,7 +34,7 @@ class TransferFactory implements TransferFactoryInterface
         EncryptorInterface $encryptor,
         TransferBuilder $transferBuilder,
         Config $config,
-        $method = Request::METHOD_GET,
+        $method = Request::METHOD_POST,
         $uri = ''
     ) {
         $this->encryptor = $encryptor;
