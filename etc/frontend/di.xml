@@ -37,4 +37,10 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Avarda\Payments\Model\GetAprWidgetHtml">
+        <arguments>
+            <argument name="checkoutSession" xsi:type="object">Magento\Checkout\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
 </config>

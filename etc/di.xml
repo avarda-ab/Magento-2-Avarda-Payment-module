@@ -314,6 +314,16 @@
             <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\PartPayment\ConfigProvider::CODE</argument>
         </arguments>
     </virtualType>
+    <type name="Avarda\Payments\Model\Redirect">
+        <arguments>
+            <argument name="checkoutSession" xsi:type="object">Magento\Checkout\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Avarda\Payments\Model\GetAprWidgetHtml">
+        <arguments>
+            <argument name="paymentConfig" xsi:type="object">Avarda\Payments\Gateway\Config\Config</argument>
+        </arguments>
+    </type>
     <!-- END Value handlers infrastructure -->
 
 </config>

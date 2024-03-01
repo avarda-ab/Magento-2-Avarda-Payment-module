@@ -11,11 +11,8 @@ use Magento\Framework\UrlInterface;
 
 class Redirect implements RedirectInterface
 {
-    /** @var Session */
-    protected $checkoutSession;
-
-    /** @var UrlInterface */
-    protected $url;
+    protected Session $checkoutSession;
+    protected UrlInterface $url;
 
     public function __construct(
         Session $checkoutSession,

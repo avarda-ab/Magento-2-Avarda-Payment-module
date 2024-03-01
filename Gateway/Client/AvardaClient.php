@@ -68,12 +68,11 @@ class AvardaClient
 
     /**
      * @param $url
-     * @param array $json
      * @param array $additionalParameters
      * @return string
      * @throws GuzzleException
      */
-    public function get($url, $headers, $additionalParameters = []): string
+    public function get($url, $headers, array $additionalParameters = []): string
     {
         $client = new Client();
 
