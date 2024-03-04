@@ -54,7 +54,7 @@ class GetAprWidgetHtml
         return '<avarda-apr-widget
                     price="' . $total . '"
                     lang="' . $this->getLang() . '"
-                    payment-method="' . $this->paymentMethod->getPaymentMethod($paymentCode) . '"' .
+                    payment-method="' . $this->getPaymentMethod($paymentCode) . '"' .
                     ($accountClass ? 'account-class="' . $accountClass . '"' : '') .
                     'data-custom-styles="' . $this->getStyles($paymentCode) . '"
                     ></avarda-apr-widget>';
@@ -106,6 +106,20 @@ class GetAprWidgetHtml
     public function getAccountClass($paymentCode)
     {
         return $this->config->getValue('payment/' . $paymentCode . '/apr_account_class', ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * @param $paymentMethod
+     * @return string
+     */
+    public function getPaymentMethod($paymentMethod)
+    {
+        $paymentMethod = $this->paymentMethod->getPaymentMethod($paymentMethod);
+        return strtolower(preg_replace(
+            '/(?<=[a-z])([A-Z]+)/',
+            '-$1',
+            lcfirst($paymentMethod)
+        ));
     }
 
     /**
