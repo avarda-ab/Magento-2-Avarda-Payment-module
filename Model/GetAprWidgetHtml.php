@@ -161,6 +161,14 @@ class GetAprWidgetHtml
                     }
                 }
                 $prevKey = is_numeric($value) ? floatval($value) : $value;
+
+                if (strpos($value, '[') !== false && strpos($value, ']') !== false) {
+                    $value = json_decode($value, true);
+                    if ($value) {
+                        $prevKey = $value;
+                    }
+                }
+
                 unset($prevKey);
             }
         }
