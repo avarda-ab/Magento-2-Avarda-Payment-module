@@ -43,16 +43,4 @@
             <argument name="checkoutSession" xsi:type="object">Magento\Checkout\Model\Session\Proxy</argument>
         </arguments>
     </type>
-
-    <!-- Hyvä checkout support -->
-    <type name="Hyva\Checkout\Model\Magewire\Payment\PlaceOrderServiceProvider">
-        <arguments>
-            <argument name="placeOrderServiceList" xsi:type="array">
-                <item name="avarda_payments_invoice" xsi:type="object">Avarda\Payments\Model\Magewire\Checkout\Payment\PlaceOrderService</item>
-                <item name="avarda_payments_direct_invoice" xsi:type="object">Avarda\Payments\Model\Magewire\Checkout\Payment\PlaceOrderService</item>
-                <item name="avarda_payments_loan" xsi:type="object">Avarda\Payments\Model\Magewire\Checkout\Payment\PlaceOrderService</item>
-                <item name="avarda_payments_partpayment" xsi:type="object">Avarda\Payments\Model\Magewire\Checkout\Payment\PlaceOrderService</item>
-            </argument>
-        </arguments>
-    </type>
 </config>
