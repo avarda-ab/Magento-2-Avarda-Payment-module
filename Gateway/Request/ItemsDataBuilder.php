@@ -17,14 +17,9 @@ class ItemsDataBuilder implements BuilderInterface
 
     const ITEMS = 'items';
 
-    /** @var ProductDataBuilder */
-    protected $itemBuilder;
-
-    /** @var ItemAdapterFactory */
-    protected $itemAdapterFactory;
-
-    /** @var ItemStorageInterface */
-    protected $itemStorage;
+    protected ProductDataBuilder $itemBuilder;
+    protected ItemAdapterFactory $itemAdapterFactory;
+    protected ItemStorageInterface $itemStorage;
 
     public function __construct(
         ProductDataBuilder $itemBuilder,
