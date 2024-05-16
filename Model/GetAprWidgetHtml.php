@@ -54,10 +54,9 @@ class GetAprWidgetHtml
         return '<avarda-apr-widget
                     price="' . $total . '"
                     lang="' . $this->getLang() . '"
-                    payment-method="' . $this->getPaymentMethod($paymentCode) . '"' .
-                    ($accountClass ? 'account-class="' . $accountClass . '"' : '') .
-                    'data-custom-styles="' . $this->getStyles($paymentCode) . '"
-                    ></avarda-apr-widget>';
+                    payment-method="' . $this->getPaymentMethod($paymentCode) . '"
+                    '. ($accountClass ? 'account-class="' . $accountClass . '"' : '') .
+                    '></avarda-apr-widget>';
     }
 
     public function getScriptInfo()
@@ -68,7 +67,8 @@ class GetAprWidgetHtml
         return [
             'url' => $url,
             'paymentId' => $initData['paymentId'],
-            'widgetJwt' => $initData['widgetJwt']
+            'widgetJwt' => $initData['widgetJwt'],
+            'styles' => $this->getStyles()
         ];
     }
 
@@ -177,6 +177,6 @@ class GetAprWidgetHtml
             $stylesJson = '[]';
         }
 
-        return $this->escaper->escapeHtmlAttr($stylesJson);
+        return $stylesJson;
     }
 }

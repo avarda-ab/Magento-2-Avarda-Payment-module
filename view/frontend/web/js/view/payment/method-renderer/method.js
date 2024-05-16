@@ -33,6 +33,7 @@ define([
                     s.type = 'text/javascript';
                     s.dataset.paymentId = window.checkoutConfig.payment.instructions[this.item.method].apr_widget.paymentId;
                     s.dataset.widgetJwt = window.checkoutConfig.payment.instructions[this.item.method].apr_widget.widgetJwt;
+                    s.dataset.customStyles = window.checkoutConfig.payment.instructions[this.item.method].apr_widget.styles;
                     document.head.appendChild(s);
                 }
                 return window.checkoutConfig.payment.instructions[this.item.method]['instructions'];
