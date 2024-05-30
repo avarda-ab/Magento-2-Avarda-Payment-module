@@ -40,6 +40,13 @@
                         <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                         <comment>Should not be enabled in production. Sensitive information is logged.</comment>
                     </field>
+                    <field id="custom_css" sortOrder="120" translate="label comment" type="textarea" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>APR Widget custom css</label>
+                        <config_path>avarda_payments/api/custom_css</config_path>
+                        <comment><![CDATA[<a target="_blank" rel="noopener" href="https://docs.avarda.com/checkout-3/more-features/custom-css-styles/">See documentation here</a>, add each config as one row for example:
+                    <pre class="code-example">buttons.primary.base.backgroundColor='#fff'
+buttons.primary.fontSize='15'</pre>]]></comment>
+                    </field>
                 </group>
                 <group id="avarda_payments_invoice" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Avarda Invoice</label>
@@ -58,17 +65,38 @@
                         <upload_dir>pub/media/payment</upload_dir>
                         <config_path>payment/avarda_payments_invoice/image</config_path>
                     </field>
+                    <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable APR Widget</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_invoice/apr_widget_active</config_path>
+                    </field>
+                    <field id="apr_account_class" translate="label" type="text" sortOrder="39" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>APR Account Class</label>
+                        <config_path>payment/avarda_payments_invoice/apr_account_class</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">1</field>
+                        </depends>
+                    </field>
                     <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Instructions</label>
                         <config_path>payment/avarda_payments_invoice/instructions</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Text</label>
                         <config_path>payment/avarda_payments_invoice/terms_text</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Link</label>
                         <config_path>payment/avarda_payments_invoice/terms_link</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>New Order Status</label>
@@ -108,17 +136,38 @@
                         <upload_dir>pub/media/payment</upload_dir>
                         <config_path>payment/avarda_payments_direct_invoice/image</config_path>
                     </field>
+                    <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable APR Widget</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_direct_invoice/apr_widget_active</config_path>
+                    </field>
+                    <field id="apr_account_class" translate="label" type="text" sortOrder="39" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>APR Account Class</label>
+                        <config_path>payment/avarda_payments_direct_invoice/apr_account_class</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">1</field>
+                        </depends>
+                    </field>
                     <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Instructions</label>
                         <config_path>payment/avarda_payments_direct_invoice/instructions</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Text</label>
                         <config_path>payment/avarda_payments_direct_invoice/terms_text</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Link</label>
                         <config_path>payment/avarda_payments_direct_invoice/terms_link</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>New Order Status</label>
@@ -158,17 +207,38 @@
                         <upload_dir>pub/media/payment</upload_dir>
                         <config_path>payment/avarda_payments_loan/image</config_path>
                     </field>
+                    <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable APR Widget</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_loan/apr_widget_active</config_path>
+                    </field>
+                    <field id="apr_account_class" translate="label" type="text" sortOrder="39" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>APR Account Class</label>
+                        <config_path>payment/avarda_payments_loan/apr_account_class</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">1</field>
+                        </depends>
+                    </field>
                     <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Instructions</label>
                         <config_path>payment/avarda_payments_loan/instructions</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Text</label>
                         <config_path>payment/avarda_payments_loan/terms_text</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Link</label>
                         <config_path>payment/avarda_payments_loan/terms_link</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>New Order Status</label>
@@ -208,17 +278,38 @@
                         <upload_dir>pub/media/payment</upload_dir>
                         <config_path>payment/avarda_payments_partpayment/image</config_path>
                     </field>
+                    <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable APR Widget</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_partpayment/apr_widget_active</config_path>
+                    </field>
+                    <field id="apr_account_class" translate="label" type="text" sortOrder="39" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>APR Account Class</label>
+                        <config_path>payment/avarda_payments_partpayment/apr_account_class</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">1</field>
+                        </depends>
+                    </field>
                     <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Instructions</label>
                         <config_path>payment/avarda_payments_partpayment/instructions</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Text</label>
                         <config_path>payment/avarda_payments_partpayment/terms_text</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Terms Link</label>
                         <config_path>payment/avarda_payments_partpayment/terms_link</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
                     </field>
                     <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>New Order Status</label>

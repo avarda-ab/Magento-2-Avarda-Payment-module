@@ -23,11 +23,19 @@ define([
                 ssn: ''
             },
             initObservable: function () {
-                this._super()
-                    .observe('ssn');
+                this._super().observe('ssn');
                 return this;
             },
             getInstructions: function () {
+                if (window.checkoutConfig.payment.instructions[this.item.method].apr_widget.enabled) {
+                    let s = document.createElement("script");
+                    s.src = window.checkoutConfig.payment.instructions[this.item.method].apr_widget.url;
+                    s.type = 'text/javascript';
+                    s.dataset.paymentId = window.checkoutConfig.payment.instructions[this.item.method].apr_widget.paymentId;
+                    s.dataset.widgetJwt = window.checkoutConfig.payment.instructions[this.item.method].apr_widget.widgetJwt;
+                    s.dataset.customStyles = window.checkoutConfig.payment.instructions[this.item.method].apr_widget.styles;
+                    document.head.appendChild(s);
+                }
                 return window.checkoutConfig.payment.instructions[this.item.method]['instructions'];
             },
             getImageSrc: function () {

@@ -28,12 +28,14 @@
             <br>
             <!--/ko-->
         </div>
+        <!-- ko if: getTermsText() -->
         <div class="field terms_text" style="font-size: smaller;">
             <span data-bind="text: getTermsText()"></span>
             <a data-bind="attr: {'href': getTermsLink()}" target="_blank" rel="noopener">
                 (<!-- ko i18n: 'Terms'--><!-- /ko -->)
             </a><br><br>
         </div>
+        <!--/ko-->
         <form class="form avarda" data-bind="attr: {'id': getCode() + '_form'}">
             <fieldset class="fieldset payment method" data-bind="attr: {id: 'payment_form_' + getCode()}">
                 <div class="field field-number required avarda">

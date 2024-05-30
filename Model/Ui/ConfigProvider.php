@@ -14,9 +14,7 @@ use Magento\Checkout\Model\ConfigProviderInterface;
 class ConfigProvider implements ConfigProviderInterface
 {
     const CODE = 'avarda_payments';
-
-    /** @var Config */
-    protected $config;
+    protected Config $config;
 
     public function __construct(
         Config $config
@@ -31,14 +29,12 @@ class ConfigProvider implements ConfigProviderInterface
     {
         $active = $this->config->isActive();
 
-        $config = [
+        return [
             'payment' => [
                 self::CODE => [
                     'isActive' => $active,
                 ]
             ]
         ];
-
-        return $config;
     }
 }
