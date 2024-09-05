@@ -185,7 +185,7 @@
     <virtualType name="AvardaPaymentsRefundRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
         <arguments>
             <argument name="builders" xsi:type="array">
-                <item name="items" xsi:type="string">Avarda\Payments\Gateway\Request\ItemsDataBuilder</item>
+                <item name="items" xsi:type="string">Avarda\Payments\Gateway\Request\ReturnItemsDataBuilder</item>
                 <item name="order_reference" xsi:type="string">Avarda\Payments\Gateway\Request\OrderReferenceDataBuilder</item>
                 <item name="transaction_id" xsi:type="string">Avarda\Payments\Gateway\Request\TranIdDataBuilder</item>
                 <item name="reason" xsi:type="string">Avarda\Payments\Gateway\Request\OrderCancelReasonBuilder</item>
