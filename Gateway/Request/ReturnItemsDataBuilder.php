@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright Copyright © Avarda. All rights reserved.
- * @package   Avarda_Checkout3
+ * @package   Avarda_Payments
  */
 
 namespace Avarda\Payments\Gateway\Request;
