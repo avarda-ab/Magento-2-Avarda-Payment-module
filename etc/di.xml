@@ -42,9 +42,6 @@
     <type name="Magento\Sales\Api\Data\InvoiceInterface">
         <plugin name="avardaPaymentsInvoiceCollectTotalsPrepareItems" type="Avarda\Payments\Plugin\PrepareItems\InvoiceCollectTotalsPrepareItems" sortOrder="900" />
     </type>
-    <type name="Magento\Sales\Api\Data\CreditmemoInterface">
-        <plugin name="avardaPaymentsCreditmemoCollectTotalsPrepareItems" type="Avarda\Payments\Plugin\PrepareItems\CreditmemoCollectTotalsPrepareItems" sortOrder="900" />
-    </type>
 
     <!-- Avarda payment methods -->
     <virtualType name="AvardaPaymentsInvoiceFacade" type="Magento\Payment\Model\Method\Adapter">
