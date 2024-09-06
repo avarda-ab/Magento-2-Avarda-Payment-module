@@ -42,9 +42,6 @@
     <type name="Magento\Sales\Api\Data\InvoiceInterface">
         <plugin name="avardaPaymentsInvoiceCollectTotalsPrepareItems" type="Avarda\Payments\Plugin\PrepareItems\InvoiceCollectTotalsPrepareItems" sortOrder="900" />
     </type>
-    <type name="Magento\Sales\Api\Data\CreditmemoInterface">
-        <plugin name="avardaPaymentsCreditmemoCollectTotalsPrepareItems" type="Avarda\Payments\Plugin\PrepareItems\CreditmemoCollectTotalsPrepareItems" sortOrder="900" />
-    </type>
 
     <!-- Avarda payment methods -->
     <virtualType name="AvardaPaymentsInvoiceFacade" type="Magento\Payment\Model\Method\Adapter">
@@ -188,7 +185,7 @@
     <virtualType name="AvardaPaymentsRefundRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
         <arguments>
             <argument name="builders" xsi:type="array">
-                <item name="items" xsi:type="string">Avarda\Payments\Gateway\Request\ItemsDataBuilder</item>
+                <item name="items" xsi:type="string">Avarda\Payments\Gateway\Request\ReturnItemsDataBuilder</item>
                 <item name="order_reference" xsi:type="string">Avarda\Payments\Gateway\Request\OrderReferenceDataBuilder</item>
                 <item name="transaction_id" xsi:type="string">Avarda\Payments\Gateway\Request\TranIdDataBuilder</item>
                 <item name="reason" xsi:type="string">Avarda\Payments\Gateway\Request\OrderCancelReasonBuilder</item>
