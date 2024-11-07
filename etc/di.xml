@@ -62,6 +62,15 @@
             <argument name="commandPool" xsi:type="object">AvardaPaymentsCommandPool</argument>
         </arguments>
     </virtualType>
+    <virtualType name="AvardaPaymentsAlternativeDirectInvoiceFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">Avarda\Payments\Model\Ui\AlternativeDirectInvoice\ConfigProvider::CODE</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">AvardaPaymentsAlternativeDirectInvoiceValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">AvardaPaymentsCommandPool</argument>
+        </arguments>
+    </virtualType>
     <virtualType name="AvardaPaymentsLoanFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
             <argument name="code" xsi:type="const">Avarda\Payments\Model\Ui\Loan\ConfigProvider::CODE</argument>
@@ -275,6 +284,23 @@
     <virtualType name="AvardaPaymentsDirectInvoiceGenericConfig" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
             <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\DirectInvoice\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AvardaPaymentsAlternativeDirectInvoiceValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">AvardaPaymentsAlternativeDirectInvoiceConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AvardaPaymentsAlternativeDirectInvoiceConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">AvardaPaymentsAlternativeDirectInvoiceGenericConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AvardaPaymentsAlternativeDirectInvoiceGenericConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\AlternativeDirectInvoice\ConfigProvider::CODE</argument>
         </arguments>
     </virtualType>
     <virtualType name="AvardaPaymentsLoanValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">

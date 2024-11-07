@@ -190,6 +190,77 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <config_path>payment/avarda_payments_direct_invoice/sort_order</config_path>
                     </field>
                 </group>
+                <group id="avarda_payments_alternative_direct_invoice" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Avarda Alternative Direct Invoice</label>
+                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable Avarda Alternative Direct Invoice</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/active</config_path>
+                    </field>
+                    <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Title</label>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/title</config_path>
+                    </field>
+                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                        <label>Upload Image</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                        <upload_dir>pub/media/payment</upload_dir>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/image</config_path>
+                    </field>
+                    <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable APR Widget</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/apr_widget_active</config_path>
+                    </field>
+                    <field id="apr_account_class" translate="label" type="text" sortOrder="39" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>APR Account Class</label>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/apr_account_class</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">1</field>
+                        </depends>
+                    </field>
+                    <field id="instructions" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Instructions</label>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/instructions</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
+                    </field>
+                    <field id="terms_text" translate="label" type="textarea" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Text</label>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/terms_text</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
+                    </field>
+                    <field id="terms_link" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Terms Link</label>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/terms_link</config_path>
+                        <depends>
+                            <field id="*/*/*/apr_widget_active">0</field>
+                        </depends>
+                    </field>
+                    <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>New Order Status</label>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status\Newprocessing</source_model>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/order_status</config_path>
+                    </field>
+                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>Payment from Applicable Countries</label>
+                        <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/allowspecific</config_path>
+                    </field>
+                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment from Specific Countries</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/specificcountry</config_path>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sort Order</label>
+                        <config_path>payment/avarda_payments_alternative_direct_invoice/sort_order</config_path>
+                    </field>
+                </group>
                 <group id="avarda_payments_loan" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Avarda Loan</label>
                     <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">

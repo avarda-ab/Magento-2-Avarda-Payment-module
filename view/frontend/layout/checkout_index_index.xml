@@ -31,6 +31,9 @@
                                                                         <item name="avarda_payments_direct_invoice" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
+                                                                        <item name="avarda_payments_alternative_direct_invoice" xsi:type="array">
+                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+                                                                        </item>
                                                                         <item name="avarda_payments_loan" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>

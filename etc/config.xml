@@ -46,6 +46,25 @@
                 <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
                 <can_use_checkout>1</can_use_checkout>
             </avarda_payments_direct_invoice>
+            <avarda_payments_alternative_direct_invoice>
+                <title>Lasku - 30 päivää maksuaikaa!</title>
+                <instructions>• Saat tuotteet aina ennen maksamista
+                    • Käsittelymaksu 2,95 €
+                    • Voit halutessasi maksaa laskun osissa</instructions>
+                <terms_text>Tarjoamme Laskun yhteistyössä Avardan kanssa.</terms_text>
+                <group>avarda_payments</group>
+                <model>AvardaPaymentsAlternativeDirectInvoiceFacade</model>
+                <order_status>processing</order_status>
+                <active>0</active>
+                <payment_action>authorize</payment_action>
+                <can_initialize>1</can_initialize>
+                <can_cancel>1</can_cancel>
+                <can_capture>1</can_capture>
+                <can_capture_partial>1</can_capture_partial>
+                <can_refund>1</can_refund>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_use_checkout>1</can_use_checkout>
+            </avarda_payments_alternative_direct_invoice>
             <avarda_payments_loan>
                 <title>Tili – jopa 36 kk maksuaikaa</title>
                 <instructions>• Maksa osissa omaan tahtiisi
