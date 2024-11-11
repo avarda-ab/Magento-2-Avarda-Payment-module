@@ -27,9 +27,15 @@ class AdditionalDataBuilder implements BuilderInterface
         $paymentDO = SubjectReader::readPayment($buildSubject);
         $payment = $paymentDO->getPayment();
 
+        $methodCode = $payment->getMethodInstance()->getCode();
+
+        if ($methodCode == 'avarda_payments_alternative_direct_invoice') {
+            $methodCode = 'avarda_payments_direct_invoice';
+        }
+
         return [
             self::ADDITIONAL => [
-                'payment_method' => str_replace(['avarda_payments_', '_'], ['', '-'], $payment->getMethodInstance()->getCode()),
+                'payment_method' => str_replace(['avarda_payments_', '_'], ['', '-'], $methodCode),
                 'authorization_id' => $payment->getAdditionalInformation('authorization_id')
             ]
         ];
