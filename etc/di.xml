@@ -151,6 +151,7 @@
                 <item name="payment_terms" xsi:type="string">Avarda\Payments\Gateway\Request\PaymentTermsDataBuilder</item>
                 <item name="description" xsi:type="string">Avarda\Payments\Gateway\Request\ShippingDescriptionBuilder</item>
                 <item name="additional" xsi:type="string">Avarda\Payments\Gateway\Request\AdditionalDataBuilder</item>
+                <item name="account_class_code" xsi:type="string">Avarda\Payments\Gateway\Request\AccountClassCodeDataBuilder</item>
             </argument>
         </arguments>
     </virtualType>
