@@ -171,7 +171,7 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                     </field>
                     <field id="account_class_code" translate="label" type="text" sortOrder="49" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Account Class Code</label>
-                        <config_path>payment/avarda_paymentsdirect_invoice/account_class_code</config_path>
+                        <config_path>payment/avarda_payments_direct_invoice/account_class_code</config_path>
                     </field>
                     <field id="order_status" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                         <label>New Order Status</label>
