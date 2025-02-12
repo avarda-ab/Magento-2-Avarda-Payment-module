@@ -116,7 +116,7 @@ class AvardaClient
                 $this->logger->debug([$response->getStatusCode(), $response->getBody()]);
                 throw new RuntimeException('Avarda server error');
             default:
-                throw new RuntimeException('Unhandled response status code');
+                throw new RuntimeException('Unhandled response status code: ' . $response->getStatusCode());
         }
     }
 
