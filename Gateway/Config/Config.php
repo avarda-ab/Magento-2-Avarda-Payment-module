@@ -8,6 +8,7 @@ namespace Avarda\Payments\Gateway\Config;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\FlagManager;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class Config
@@ -28,14 +29,9 @@ class Config extends \Magento\Payment\Gateway\Config\Config
     const URL_PRODUCTION = 'https://authorization-api.avarda.com/';
     const TOKEN_PATH = 'oauth2/token';
 
-    /** @var ScopeConfigInterface */
-    private $config;
-
-    /** @var EncryptorInterface */
-    protected $encryptor;
-
-    /** @var FlagManager */
-    protected $flagManager;
+    protected EncryptorInterface $encryptor;
+    protected ScopeConfigInterface $config;
+    protected FlagManager $flagManager;
 
     public function __construct(
         ScopeConfigInterface $scopeConfig,
@@ -73,7 +69,7 @@ class Config extends \Magento\Payment\Gateway\Config\Config
      */
     public function getClientSecret()
     {
-        return $this->encryptor->decrypt($this->config->getValue(self::KEY_CLIENT_SECRET));
+        return $this->encryptor->decrypt($this->config->getValue(self::KEY_CLIENT_SECRET, ScopeInterface::SCOPE_STORE));
     }
 
     /**
@@ -81,7 +77,7 @@ class Config extends \Magento\Payment\Gateway\Config\Config
      */
     public function getClientId()
     {
-        return $this->config->getValue(self::KEY_CLIENT_ID);
+        return $this->config->getValue(self::KEY_CLIENT_ID, ScopeInterface::SCOPE_STORE);
     }
 
     /**

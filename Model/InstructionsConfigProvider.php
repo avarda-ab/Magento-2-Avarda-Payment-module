@@ -65,7 +65,7 @@ class InstructionsConfigProvider implements ConfigProviderInterface
      */
     protected function getIsAprWidgetEnabled($code)
     {
-        return (bool)$this->scopeConfig->getValue('payment/' . $code . '/apr_widget_active', ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->isSetFlag('payment/' . $code . '/apr_widget_active', ScopeInterface::SCOPE_STORE);
     }
 
     /**
