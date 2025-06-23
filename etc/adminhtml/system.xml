@@ -43,7 +43,7 @@
                     <field id="custom_css" sortOrder="120" translate="label comment" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>APR Widget custom css</label>
                         <config_path>avarda_payments/api/custom_css</config_path>
-                        <comment><![CDATA[<a target="_blank" rel="noopener" href="https://docs.avarda.com/checkout-3/more-features/custom-css-styles/">See documentation here</a>, add each config as one row for example:
+                        <comment><![CDATA[<a target="_blank" rel="noopener" href="https://docs.avarda.com/checkout-3/custom-css-styles/">See documentation here</a>, add each config as one row for example:
                     <pre class="code-example">buttons.primary.base.backgroundColor='#fff'
 buttons.primary.fontSize='15'</pre>]]></comment>
                     </field>
