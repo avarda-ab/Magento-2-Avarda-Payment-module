@@ -40,6 +40,12 @@
                         <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                         <comment>Should not be enabled in production. Sensitive information is logged.</comment>
                     </field>
+                    <field id="show_loan_warning" sortOrder="115" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Show loan cost warning</label>
+                        <config_path>avarda_payments/api/show_loan_warning</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>Show loan costs money warning (required in Sweden by law)</comment>
+                    </field>
                     <field id="custom_css" sortOrder="120" translate="label comment" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>APR Widget custom css</label>
                         <config_path>avarda_payments/api/custom_css</config_path>
