@@ -65,10 +65,11 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Title</label>
                         <config_path>payment/avarda_payments_invoice/title</config_path>
                     </field>
-                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                    <field id="image" translate="label" sortOrder="30" type="image" showInDefault="1" showInWebsite="1" >
                         <label>Upload Image</label>
-                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                        <upload_dir>pub/media/payment</upload_dir>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">payment</upload_dir>
+                        <base_url type="media" scope_info="1">payment</base_url>
                         <config_path>payment/avarda_payments_invoice/image</config_path>
                     </field>
                     <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -136,10 +137,11 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Title</label>
                         <config_path>payment/avarda_payments_direct_invoice/title</config_path>
                     </field>
-                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                    <field id="image" translate="label" sortOrder="30" type="image" showInDefault="1" showInWebsite="1" >
                         <label>Upload Image</label>
-                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                        <upload_dir>pub/media/payment</upload_dir>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">payment</upload_dir>
+                        <base_url type="media" scope_info="1">payment</base_url>
                         <config_path>payment/avarda_payments_direct_invoice/image</config_path>
                     </field>
                     <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -207,10 +209,11 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Title</label>
                         <config_path>payment/avarda_payments_loan/title</config_path>
                     </field>
-                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                    <field id="image" translate="label" sortOrder="30" type="image" showInDefault="1" showInWebsite="1" >
                         <label>Upload Image</label>
-                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                        <upload_dir>pub/media/payment</upload_dir>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">payment</upload_dir>
+                        <base_url type="media" scope_info="1">payment</base_url>
                         <config_path>payment/avarda_payments_loan/image</config_path>
                     </field>
                     <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -278,10 +281,11 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Title</label>
                         <config_path>payment/avarda_payments_partpayment/title</config_path>
                     </field>
-                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                    <field id="image" translate="label" sortOrder="30" type="image" showInDefault="1" showInWebsite="1" >
                         <label>Upload Image</label>
-                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                        <upload_dir>pub/media/payment</upload_dir>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">payment</upload_dir>
+                        <base_url type="media" scope_info="1">payment</base_url>
                         <config_path>payment/avarda_payments_partpayment/image</config_path>
                     </field>
                     <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
