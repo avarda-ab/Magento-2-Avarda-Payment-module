@@ -3,8 +3,8 @@
 namespace Avarda\Payments\Model;
 
 use Avarda\Payments\Gateway\Client\AvardaClient;
-use Avarda\Payments\Gateway\Config\Config;
 use Avarda\Payments\Helper\PaymentMethod;
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -55,21 +55,25 @@ class GetAprWidgetHtml
                     price="' . $total . '"
                     lang="' . $this->getLang() . '"
                     payment-method="' . $this->getPaymentMethod($paymentCode) . '"
-                    '. ($accountClass ? 'account-class="' . $accountClass . '"' : '') .
+                    ' . ($accountClass ? 'account-class="' . $accountClass . '"' : '') .
                     '></avarda-apr-widget>';
     }
 
     public function getScriptInfo()
     {
-        $url = $this->config->getValue('avarda_payments/api/test_mode', ScopeInterface::SCOPE_STORE) ? self::STAGE_WIDGET_JS_URL : self::PROD_WIDGET_JS_URL;
-        $url .= '?ts=' . rand();
-        $initData = $this->initAprWidget();
-        return [
-            'url' => $url,
-            'paymentId' => $initData['paymentId'],
-            'widgetJwt' => $initData['widgetJwt'],
-            'styles' => $this->getStyles()
-        ];
+        try {
+            $url = $this->config->getValue('avarda_payments/api/test_mode', ScopeInterface::SCOPE_STORE) ? self::STAGE_WIDGET_JS_URL : self::PROD_WIDGET_JS_URL;
+            $url .= '?ts=' . rand();
+            $initData = $this->initAprWidget();
+            return [
+                'url' => $url,
+                'paymentId' => $initData['paymentId'],
+                'widgetJwt' => $initData['widgetJwt'],
+                'styles' => $this->getStyles()
+            ];
+        } catch (Exception) {
+            return ['enabled' => false];
+        }
     }
 
     public function getLang()
