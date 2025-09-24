@@ -15,35 +15,41 @@
                 <frontend_model>Avarda\Payments\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
                 <group id="api" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Avarda API Configuration</label>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Enable Avarda Integration</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>avarda_payments/api/active</config_path>
                     </field>
-                    <field id="test_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <field id="test_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Test Mode (Stage)</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>avarda_payments/api/test_mode</config_path>
                     </field>
-                    <field id="client_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <field id="client_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Client ID</label>
                         <config_path>avarda_payments/api/client_id</config_path>
                     </field>
-                    <field id="client_secret" translate="label" type="obscure" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <field id="client_secret" translate="label" type="obscure" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Client Secret</label>
                         <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                         <config_path>avarda_payments/api/client_secret</config_path>
                     </field>
-                    <field id="debug" sortOrder="110" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <field id="debug" sortOrder="110" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Debug Logging</label>
                         <config_path>avarda_payments/api/debug</config_path>
                         <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                         <comment>Should not be enabled in production. Sensitive information is logged.</comment>
                     </field>
-                    <field id="custom_css" sortOrder="120" translate="label comment" type="textarea" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <field id="show_loan_warning" sortOrder="115" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Show loan cost warning</label>
+                        <config_path>avarda_payments/api/show_loan_warning</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>Show loan costs money warning (required in Sweden by law)</comment>
+                    </field>
+                    <field id="custom_css" sortOrder="120" translate="label comment" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>APR Widget custom css</label>
                         <config_path>avarda_payments/api/custom_css</config_path>
-                        <comment><![CDATA[<a target="_blank" rel="noopener" href="https://docs.avarda.com/checkout-3/more-features/custom-css-styles/">See documentation here</a>, add each config as one row for example:
+                        <comment><![CDATA[<a target="_blank" rel="noopener" href="https://docs.avarda.com/checkout-3/custom-css-styles/">See documentation here</a>, add each config as one row for example:
                     <pre class="code-example">buttons.primary.base.backgroundColor='#fff'
 buttons.primary.fontSize='15'</pre>]]></comment>
                     </field>
@@ -59,10 +65,11 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Title</label>
                         <config_path>payment/avarda_payments_invoice/title</config_path>
                     </field>
-                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                    <field id="image" translate="label" sortOrder="30" type="image" showInDefault="1" showInWebsite="1" >
                         <label>Upload Image</label>
-                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                        <upload_dir>pub/media/payment</upload_dir>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">payment</upload_dir>
+                        <base_url type="media" scope_info="1">payment</base_url>
                         <config_path>payment/avarda_payments_invoice/image</config_path>
                     </field>
                     <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -130,10 +137,11 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Title</label>
                         <config_path>payment/avarda_payments_direct_invoice/title</config_path>
                     </field>
-                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                    <field id="image" translate="label" sortOrder="30" type="image" showInDefault="1" showInWebsite="1" >
                         <label>Upload Image</label>
-                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                        <upload_dir>pub/media/payment</upload_dir>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">payment</upload_dir>
+                        <base_url type="media" scope_info="1">payment</base_url>
                         <config_path>payment/avarda_payments_direct_invoice/image</config_path>
                     </field>
                     <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -280,10 +288,11 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Title</label>
                         <config_path>payment/avarda_payments_loan/title</config_path>
                     </field>
-                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                    <field id="image" translate="label" sortOrder="30" type="image" showInDefault="1" showInWebsite="1" >
                         <label>Upload Image</label>
-                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                        <upload_dir>pub/media/payment</upload_dir>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">payment</upload_dir>
+                        <base_url type="media" scope_info="1">payment</base_url>
                         <config_path>payment/avarda_payments_loan/image</config_path>
                     </field>
                     <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -351,10 +360,11 @@ buttons.primary.fontSize='15'</pre>]]></comment>
                         <label>Title</label>
                         <config_path>payment/avarda_payments_partpayment/title</config_path>
                     </field>
-                    <field id="image" translate="label" sortOrder="30" type="Magento\Config\Block\System\Config\Form\Field\File" showInDefault="1" showInWebsite="1" >
+                    <field id="image" translate="label" sortOrder="30" type="image" showInDefault="1" showInWebsite="1" >
                         <label>Upload Image</label>
-                        <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                        <upload_dir>pub/media/payment</upload_dir>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">payment</upload_dir>
+                        <base_url type="media" scope_info="1">payment</base_url>
                         <config_path>payment/avarda_payments_partpayment/image</config_path>
                     </field>
                     <field id="apr_widget_active"  translate="label" type="select" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="0">
