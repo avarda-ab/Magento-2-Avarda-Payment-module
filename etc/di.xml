@@ -7,7 +7,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="Avarda\Payments\Api\Data\PaymentDetailsInterface" type="Avarda\Payments\Model\Data\PaymentDetails" />
     <preference for="Avarda\Payments\Api\ItemStorageInterface" type="Avarda\Payments\Model\ItemStorage" />
     <preference for="Avarda\Payments\Api\RedirectInterface" type="Avarda\Payments\Model\Redirect" />
 
