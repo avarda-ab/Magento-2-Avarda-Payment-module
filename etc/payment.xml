@@ -18,6 +18,9 @@
         <method name="avarda_payments_direct_invoice">
             <allow_multiple_address>0</allow_multiple_address>
         </method>
+        <method name="avarda_payments_alternative_direct_invoice">
+            <allow_multiple_address>0</allow_multiple_address>
+        </method>
         <method name="avarda_payments_loan">
             <allow_multiple_address>0</allow_multiple_address>
         </method>

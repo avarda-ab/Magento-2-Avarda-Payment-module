@@ -20,6 +20,10 @@ define([
                 component: 'Avarda_Payments/js/view/payment/method-renderer/method'
             },
             {
+                type: 'avarda_payments_alternative_direct_invoice',
+                component: 'Avarda_Payments/js/view/payment/method-renderer/method'
+            },
+            {
                 type: 'avarda_payments_loan',
                 component: 'Avarda_Payments/js/view/payment/method-renderer/method'
             },

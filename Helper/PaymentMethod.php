@@ -6,6 +6,7 @@
 
 namespace Avarda\Payments\Helper;
 
+use Avarda\Payments\Model\Ui\AlternativeDirectInvoice\ConfigProvider as AlternativeDirectInvoiceConfigProvider;
 use Avarda\Payments\Model\Ui\DirectInvoice\ConfigProvider as DirectInvoiceConfigProvider;
 use Avarda\Payments\Model\Ui\Invoice\ConfigProvider as InvoiceConfigProvider;
 use Avarda\Payments\Model\Ui\Loan\ConfigProvider as LoanConfigProvider;
@@ -13,6 +14,7 @@ use Avarda\Payments\Model\Ui\PartPayment\ConfigProvider as PartPaymentConfigProv
 
 class PaymentMethod
 {
+    const ALTERNATIVE_DIRECT_INVOICE = "DirectInvoice";
     const DIRECT_INVOICE = "DirectInvoice";
     const INVOICE = "Invoice";
     const LOAN = "Loan";
@@ -25,6 +27,7 @@ class PaymentMethod
      * @var array
      */
     public static $codes = [
+        AlternativeDirectInvoiceConfigProvider::CODE => self::ALTERNATIVE_DIRECT_INVOICE,
         DirectInvoiceConfigProvider::CODE => self::DIRECT_INVOICE,
         InvoiceConfigProvider::CODE       => self::INVOICE,
         LoanConfigProvider::CODE          => self::LOAN,

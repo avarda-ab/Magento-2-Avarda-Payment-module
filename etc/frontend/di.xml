@@ -16,6 +16,11 @@
             <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\DirectInvoice\ConfigProvider::CODE</argument>
         </arguments>
     </virtualType>
+    <virtualType name="AvardaPaymentsAlternativeDirectInvoiceInstructionProvider" type="Avarda\Payments\Model\InstructionsConfigProvider">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\AlternativeDirectInvoice\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
     <virtualType name="AvardaPaymentsLoanInstructionProvider" type="Avarda\Payments\Model\InstructionsConfigProvider">
         <arguments>
             <argument name="methodCode" xsi:type="const">Avarda\Payments\Model\Ui\Loan\ConfigProvider::CODE</argument>
@@ -32,6 +37,7 @@
             <argument name="configProviders" xsi:type="array">
                 <item name="avarda_payment_invoice_instructions_config_provider" xsi:type="object">AvardaPaymentsInvoiceInstructionProvider</item>
                 <item name="avarda_payment_direct_invoice_instructions_config_provider" xsi:type="object">AvardaPaymentsDirectInvoiceInstructionProvider</item>
+                <item name="avarda_payment_alternative_direct_invoice_instructions_config_provider" xsi:type="object">AvardaPaymentsAlternativeDirectInvoiceInstructionProvider</item>
                 <item name="avarda_payment_loan_instructions_config_provider" xsi:type="object">AvardaPaymentsLoanInstructionProvider</item>
                 <item name="avarda_payment_partpayment_instructions_config_provider" xsi:type="object">AvardaPaymentsPartPaymentInstructionProvider</item>
             </argument>
