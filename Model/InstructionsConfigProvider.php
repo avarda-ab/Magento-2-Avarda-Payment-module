@@ -132,8 +132,8 @@ class InstructionsConfigProvider implements ConfigProviderInterface
         }
         $imgUrl = $this->assetRepo->getUrlWithParams('Avarda_Payments::image/avarda_alert.png', []);
         return '<div><img style="float:left; margin-right: 10px" src="' . $this->escaper->escapeHtmlAttr($imgUrl) .'" alt="Att låna kostar pengar!"/>' .
-            'Att låna kostar pengar!' .
-            'Om du inte kan betala tillbaka skulden i tid riskerar du en betalningsanmärkning. Det kan leda till svårigheter att få hyra bostad, teckna abonnemang och få nya lån.' .
+            'Att låna kostar pengar!' . ' ' .
+            'Om du inte kan betala tillbaka skulden i tid riskerar du en betalningsanmärkning. Det kan leda till svårigheter att få hyra bostad, teckna abonnemang och få nya lån.' . ' ' .
             'För stöd, vänd dig till budget- och skuldrådgivningen i din kommun. Kontaktuppgifter finns på <a href="https://www.konsumentverket.se/" target="_blank">konsumentverket.se</a>.</div>';
     }
 }
