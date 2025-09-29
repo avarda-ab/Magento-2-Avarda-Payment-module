@@ -61,6 +61,7 @@ class InstructionsConfigProvider implements ConfigProviderInterface
                     ['enabled' => $this->getIsAprWidgetEnabled($this->methodCode)],
                     ($this->getIsAprWidgetEnabled($this->methodCode) ? $this->getAprWidgetHtml->getScriptInfo() : [])
                 ),
+                'loan_warning' => $this->getLoanWarning(),
                 'show_loan_warning' => $this->scopeConfig->isSetFlag('avarda_payments/api/show_loan_warning', ScopeInterface::SCOPE_STORE),
             ];
         }
@@ -89,10 +90,20 @@ class InstructionsConfigProvider implements ConfigProviderInterface
         } else {
             $html = nl2br($this->escaper->escapeHtml($this->scopeConfig->getValue('payment/' . $code . '/instructions', ScopeInterface::SCOPE_STORE)));
         }
-        if ($this->scopeConfig->isSetFlag('avarda_payments/api/show_loan_warning', ScopeInterface::SCOPE_STORE)) {
-            $html .= $this->getLoanWarningHtml();
-        }
         return $html;
+    }
+
+    /**
+     * Get loan warning html if enabled in config
+     *
+     * @return string|null
+     */
+    protected function getLoanWarning()
+    {
+        if ($this->scopeConfig->isSetFlag('avarda_payments/api/show_loan_warning', ScopeInterface::SCOPE_STORE)) {
+            return $this->getLoanWarningHtml();
+        }
+        return null;
     }
 
     /**

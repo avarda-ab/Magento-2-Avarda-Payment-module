@@ -36,6 +36,11 @@
             </a><br><br>
         </div>
         <!--/ko-->
+        <!-- ko if: getLoanWarning() -->
+        <div>
+            <p data-bind="html: getLoanWarning()"></p>
+        </div>
+        <!--/ko-->
         <form class="form avarda" data-bind="attr: {'id': getCode() + '_form'}">
             <fieldset class="fieldset payment method" data-bind="attr: {id: 'payment_form_' + getCode()}">
                 <div class="field field-number required avarda">
