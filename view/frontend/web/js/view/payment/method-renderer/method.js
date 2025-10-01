@@ -47,6 +47,9 @@ define([
             getTermsLink: function () {
                 return window.checkoutConfig.payment.instructions[this.item.method]['terms_link'];
             },
+            getLoanWarning: function () {
+                return window.checkoutConfig.payment.instructions[this.item.method]['loan_warning'];
+            },
             placeOrder: function() {
                 var self = this;
                 if (self.validate() && additionalValidators.validate()) {
