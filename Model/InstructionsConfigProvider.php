@@ -61,6 +61,7 @@ class InstructionsConfigProvider implements ConfigProviderInterface
                     ['enabled' => $this->getIsAprWidgetEnabled($this->methodCode)],
                     ($this->getIsAprWidgetEnabled($this->methodCode) ? $this->getAprWidgetHtml->getScriptInfo() : [])
                 ),
+                'loan_warning' => $this->getLoanWarning(),
                 'show_loan_warning' => $this->scopeConfig->isSetFlag('avarda_payments/api/show_loan_warning', ScopeInterface::SCOPE_STORE),
             ];
         }
@@ -89,10 +90,20 @@ class InstructionsConfigProvider implements ConfigProviderInterface
         } else {
             $html = nl2br($this->escaper->escapeHtml($this->scopeConfig->getValue('payment/' . $code . '/instructions', ScopeInterface::SCOPE_STORE)));
         }
-        if ($this->scopeConfig->isSetFlag('avarda_payments/api/show_loan_warning', ScopeInterface::SCOPE_STORE)) {
-            $html .= $this->getLoanWarningHtml();
-        }
         return $html;
+    }
+
+    /**
+     * Get loan warning html if enabled in config
+     *
+     * @return string|null
+     */
+    protected function getLoanWarning()
+    {
+        if ($this->scopeConfig->isSetFlag('avarda_payments/api/show_loan_warning', ScopeInterface::SCOPE_STORE)) {
+            return $this->getLoanWarningHtml();
+        }
+        return null;
     }
 
     /**
@@ -132,8 +143,8 @@ class InstructionsConfigProvider implements ConfigProviderInterface
         }
         $imgUrl = $this->assetRepo->getUrlWithParams('Avarda_Payments::image/avarda_alert.png', []);
         return '<div><img style="float:left; margin-right: 10px" src="' . $this->escaper->escapeHtmlAttr($imgUrl) .'" alt="Att låna kostar pengar!"/>' .
-            'Att låna kostar pengar!' .
-            'Om du inte kan betala tillbaka skulden i tid riskerar du en betalningsanmärkning. Det kan leda till svårigheter att få hyra bostad, teckna abonnemang och få nya lån.' .
+            'Att låna kostar pengar!' . ' ' .
+            'Om du inte kan betala tillbaka skulden i tid riskerar du en betalningsanmärkning. Det kan leda till svårigheter att få hyra bostad, teckna abonnemang och få nya lån.' . ' ' .
             'För stöd, vänd dig till budget- och skuldrådgivningen i din kommun. Kontaktuppgifter finns på <a href="https://www.konsumentverket.se/" target="_blank">konsumentverket.se</a>.</div>';
     }
 }
