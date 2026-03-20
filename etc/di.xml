@@ -9,6 +9,7 @@
 
     <preference for="Avarda\Payments\Api\ItemStorageInterface" type="Avarda\Payments\Model\ItemStorage" />
     <preference for="Avarda\Payments\Api\RedirectInterface" type="Avarda\Payments\Model\Redirect" />
+    <preference for="Magento\Sales\Model\CronJob\CleanExpiredOrders" type="Avarda\Payments\Preference\Magento\Sales\CronJobCleanExpiredOrders" />
 
     <type name="Avarda\Payments\Helper\AuthorizationStatus">
         <arguments>
