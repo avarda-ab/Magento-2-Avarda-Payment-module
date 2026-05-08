@@ -33,3 +33,5 @@ Instructions,Instructions
 "Avarda PartPayment","Avarda PartPayment"
 "Enable Avarda PartPayment","Enable Avarda PartPayment"
 "Partner site has no direct invoice account class associated with provided account class code.","Unfortunately, the payment method is not available at the moment."
+"To pay with a credit payment method we need your Social Security Number.","To pay with a credit payment method we need your Social Security Number."
+"Verification","Verification"
