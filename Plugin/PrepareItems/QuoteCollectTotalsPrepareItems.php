@@ -47,6 +47,29 @@ class QuoteCollectTotalsPrepareItems extends AbstractPrepareItems
         $this->prepareItems($subject);
         $this->prepareShipment($subject);
         $this->prepareGiftCards($subject);
+        $this->prepareRoundingCorrection($subject);
+    }
+
+    // Reconcile in cents so Avarda matches Magento's total.
+    protected function prepareRoundingCorrection(CartInterface $subject)
+    {
+        $itemTotalCents = 0;
+        foreach ($this->itemStorage->getItems() as $itemAdapter) {
+            $itemTotalCents += (int) round(sprintf('%.2F', $itemAdapter->getAmount()) * 100);
+        }
+
+        $diffCents = (int) round($subject->getBaseGrandTotal() * 100) - $itemTotalCents;
+        if ($diffCents === 0) {
+            return;
+        }
+
+        $itemAdapter = $this->itemAdapterFactory->create();
+        $itemAdapter->setAmount($diffCents / 100);
+        $itemAdapter->setTaxAmount(0);
+        $itemAdapter->setDescription(__('Rounding'));
+        $itemAdapter->setNotes('rounding');
+        $itemAdapter->setTaxCode(0);
+        $this->itemStorage->addItem($itemAdapter);
     }
 
     /**
