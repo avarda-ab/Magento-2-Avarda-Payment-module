@@ -12,6 +12,7 @@ define([
     'mage/url',
     'Magento_Checkout/js/model/full-screen-loader',
     'mage/translate',
+    'Magento_Ui/js/modal/modal',
     'mage/validation'
 ],
     function (ko, $, Component, placeOrderAction, additionalValidators, urlBuilder, mageUrlBuilder, fullScreenLoader, $t) {
@@ -52,18 +53,41 @@ define([
             },
             placeOrder: function() {
                 var self = this;
-                if (self.validate() && additionalValidators.validate()) {
-                    placeOrderAction(self.getData(), self.messageContainer).done(function () {
-                        fullScreenLoader.startLoader();
-
-                        self.getRestPaymentRedirectUrl().done(function(response) {
-                            $.mage.redirect(response);
-                        }).fail(function() {
-                            fullScreenLoader.stopLoader();
-                            self.addErrorMessage($t('An error occurred on the server. Please try to place the order again.'));
-                        });
-                    });
+                if (!additionalValidators.validate()) {
+                    return;
                 }
+                var inputId = 'avarda_ssn_input_' + self.getCode();
+                var $content = $('#avarda-ssn-modal-' + self.getCode());
+                $content.modal({
+                        type: 'popup',
+                        title: $t('Verification'),
+                        buttons: [{
+                            text: $t('Continue'),
+                            class: 'action primary',
+                            click: function () {
+                                var ssn = $('#' + inputId).val();
+                                if (!ssn) {
+                                    return;
+                                }
+                                self.ssn(ssn);
+                                this.closeModal();
+                                self.submitOrder();
+                            }
+                        }]
+                    })
+                    .modal('openModal');
+            },
+            submitOrder: function() {
+                var self = this;
+                placeOrderAction(self.getData(), self.messageContainer).done(function () {
+                    fullScreenLoader.startLoader();
+                    self.getRestPaymentRedirectUrl().done(function (response) {
+                        $.mage.redirect(response);
+                    }).fail(function () {
+                        fullScreenLoader.stopLoader();
+                        self.addErrorMessage($t('An error occurred on the server. Please try to place the order again.'));
+                    });
+                });
             },
             getRestPaymentRedirectUrl: function() {
                 var serviceUrl = 'rest/V1/avardapayment/redirect';
@@ -77,10 +101,6 @@ define([
                         'avarda_payments_ssn': this.ssn()
                     }
                 };
-            },
-            validate: function() {
-                var form = '#' + this.getCode() + '_form';
-                return $(form).validation() && $(form).validation('isValid') && this.ssn();
             },
         });
     }
