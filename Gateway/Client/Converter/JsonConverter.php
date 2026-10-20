@@ -33,6 +33,8 @@ class JsonConverter implements ConverterInterface
             throw new AuthorizationException(
                 __('Failed to authorize Avarda Payments.')
             );
+        } elseif (!empty($body['reasonMessage'])) {
+            throw new WebapiException(__($body['reasonMessage']));
         } elseif (isset($body['errorMessage'])) {
             throw new WebapiException(__($body['errorMessage']));
         } elseif (isset($body['errors'])) {
