@@ -8,11 +8,14 @@ namespace Avarda\Payments\Gateway\Request;
 
 use Magento\Payment\Gateway\Helper\SubjectReader;
 use Magento\Payment\Gateway\Request\BuilderInterface;
+use Magento\Payment\Helper\Formatter;
 use Magento\Sales\Model\Order\Creditmemo;
 use Magento\Sales\Model\Order\Payment;
 
 class ReturnItemsDataBuilder implements BuilderInterface
 {
+    use Formatter;
+
     /**
      * @inheritdoc
      */
@@ -27,9 +30,9 @@ class ReturnItemsDataBuilder implements BuilderInterface
         $items['Items'] = [[
             "description" => "Return",
             "notes" => "Return from Magento",
-            "amount" => $creditMemo->getBaseGrandTotal(),
+            "amount" => $this->formatPrice(round($creditMemo->getBaseGrandTotal(), 2)),
             "taxCode" => "0.00",
-            "taxAmount" => $creditMemo->getBaseTaxAmount(),
+            "taxAmount" => $this->formatPrice(round($creditMemo->getBaseTaxAmount(), 2)),
             "quantity" => 1
         ]];
 
