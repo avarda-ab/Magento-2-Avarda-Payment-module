@@ -59,7 +59,8 @@ class QuoteCollectTotalsPrepareItems extends AbstractPrepareItems
         }
 
         $diffCents = (int) round($subject->getBaseGrandTotal() * 100) - $itemTotalCents;
-        if ($diffCents === 0) {
+        // Rounding drift is at most a cent per line
+        if ($diffCents === 0 || abs($diffCents) > count($this->itemStorage->getItems())) {
             return;
         }
 
