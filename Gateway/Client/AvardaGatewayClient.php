@@ -34,7 +34,7 @@ class AvardaGatewayClient implements ClientInterface
     public function __construct(
         AvardaClientFactory $avardaClient,
         Logger $logger,
-        ConverterInterface $converter = null
+        ?ConverterInterface $converter = null
     ) {
         $this->avardaClient = $avardaClient;
         $this->converter = $converter;
