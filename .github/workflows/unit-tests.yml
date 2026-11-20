@@ -1,0 +1,76 @@
+name: Unit tests
+
+on:
+  push:
+    branches: [ dev, master, main ]
+  pull_request:
+
+jobs:
+  lint:
+    name: PHP syntax (${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '8.1', '8.2', '8.3', '8.4', '8.5' ]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      # php -l exits 0 on deprecations and default php.ini hides them,
+      # so force error reporting and fail on any Deprecated output
+      - name: php -l on all PHP files
+        shell: bash
+        run: |
+          find . -name '*.php' -print0 \
+            | xargs -0 -n1 -P4 php -d error_reporting=E_ALL -d display_errors=1 -l 2>&1 \
+            | tee lint.log
+          ! grep -E 'Deprecated:|Warning:' lint.log
+
+  unit-php82:
+    name: Unit tests (PHP 8.2, Magento 2.4.7-p10)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: extdn/github-actions-m2/magento-unit-tests/8.2@master
+        env:
+          MAGENTO_VERSION: '2.4.7-p10'
+          MODULE_NAME: Avarda_Payments
+          COMPOSER_NAME: avarda/payments
+          # Magento 2.4.7 requires league/flysystem ^2.4, which Composer blocks for a security advisory
+          COMPOSER_NO_BLOCKING: '1'
+
+  unit-php83:
+    name: Unit tests (PHP 8.3, Magento 2.4.8-p5)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: extdn/github-actions-m2/magento-unit-tests/8.3@master
+        env:
+          MAGENTO_VERSION: '2.4.8-p5'
+          MODULE_NAME: Avarda_Payments
+          COMPOSER_NAME: avarda/payments
+
+  unit-php84:
+    name: Unit tests (PHP 8.4, Magento 2.4.9)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: extdn/github-actions-m2/magento-unit-tests/8.4@master
+        env:
+          MAGENTO_VERSION: '2.4.9'
+          MODULE_NAME: Avarda_Payments
+          COMPOSER_NAME: avarda/payments
+
+  unit-php85:
+    name: Unit tests (PHP 8.5, Magento 2.4.9)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: extdn/github-actions-m2/magento-unit-tests/8.5@master
+        env:
+          MAGENTO_VERSION: '2.4.9'
+          MODULE_NAME: Avarda_Payments
+          COMPOSER_NAME: avarda/payments
